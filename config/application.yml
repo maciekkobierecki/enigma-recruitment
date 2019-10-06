@@ -1,0 +1,31 @@
+spring:
+  liquibase:
+    enabled: true
+
+payment:
+  authToken: 3e5cac39-7e38-4139-8fd6-30adc06a61bd
+  notifyUrl: testurl.pl
+  merchantPosId: 1
+  ribbon:
+    listOfServers: https://secure.payu.com
+
+
+---
+spring:
+  profiles: test
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelog/master.xml
+  datasource:
+    url: jdbc:h2:mem:testdb:sa
+    driver-class-name: org.h2.Driver
+    username: sa
+    h2:
+      console:
+        enabled: true
+payment:
+  authToken: 3e5cac39-7e38-4139-8fd6-30adc06a61bd
+  notifyUrl: testurl.pl
+  merchantPosId: 1
+  ribbon:
+    listOfServers: https://secure.payu.com
