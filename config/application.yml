@@ -1,0 +1,38 @@
+spring:
+  liquibase:
+    enabled: true
+    liquibaseTablespace: APP_IMEI_BLOCK_DATA
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+    username: APP_IMEI_BLOCK
+    password: APP_IMEI_BLOCK_DEV
+    url: jdbc:oracle:thin:@localhost:1521/XE
+  jackson:
+    default-property-inclusion: non_null
+
+payment:
+  authToken: 3e5cac39-7e38-4139-8fd6-30adc06a61bd
+  notifyUrl: testurl.pl
+  merchantPosId: 1
+  ribbon:
+    listOfServers: https://secure.payu.com
+
+
+---
+spring:
+  profiles: test
+  liquibase:
+    change-log: classpath:/db/changelog/master.xml
+  datasource:
+    url: jdbc:h2:mem:testdb:sa
+    driver-class-name: org.h2.Driver
+    username: sa
+    h2:
+      console:
+        enabled: true
+payment:
+  authToken: 3e5cac39-7e38-4139-8fd6-30adc06a61bd
+  notifyUrl: testurl.pl
+  merchantPosId: 1
+  ribbon:
+    listOfServers: https://secure.payu.com
